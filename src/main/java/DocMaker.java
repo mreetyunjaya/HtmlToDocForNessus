@@ -125,7 +125,7 @@ public class DocMaker {
 
             String openPorts = ipInfoHolder.getPorts();
             if (openPorts == null || openPorts.trim().equals("")) {
-                p = produceColoredText("Nie wykryto otwartych portow", "black");
+                p = produceColoredText("Nie wykryto otwartych portów", "black");
                 mainDocumentPart.getContent().add(p);
             }
             else {
@@ -137,7 +137,7 @@ public class DocMaker {
             mainDocumentPart.getContent().add(p);
 
             if (ipInfoHolder.getFoundExploits() == null || ipInfoHolder.getFoundExploits().size() == 0) {
-                p = produceColoredText("Nie wykryto zadnych luk", "black");
+                p = produceColoredText("Nie wykryto żadnych luk", "black");
                 mainDocumentPart.getContent().add(p);
 
                 mainDocumentPart.getContent().add(emptyText);
