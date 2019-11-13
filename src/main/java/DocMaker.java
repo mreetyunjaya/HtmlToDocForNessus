@@ -125,10 +125,11 @@ public class DocMaker {
                 }*/
                 Tr tr = (Tr) row;
                 List<Object> cells = tr.getContent();
+                ((Tc)cells.get(0)).getContent().clear();
                 ((Tc)cells.get(0)).getContent().add(produceColoredText(String.valueOf(counter+1), "black"));
-                ((Tc)cells.get(1)).getContent().add(produceColoredText(exploitHolder.getName(), "black"));
                 ((Tc)cells.get(0)).setTcPr(generateShade(ExploitTypeColor.typeStringToColor(exploitHolder.getType()).typeColor));
-
+                ((Tc)cells.get(1)).getContent().clear();
+                ((Tc)cells.get(1)).getContent().add(produceColoredText(exploitHolder.getName(), "black"));
                 //((Tc)cells.get(0)).getContent().add(produceHighLightedText(String.valueOf(counter+1), ExploitTypeColor.typeStringToColor(exploitHolder.getType()).typeColor));
                 //((Tc)cells.get(1)).getContent().add(produceColoredText(exploitHolder.getName(), ExploitTypeColor.typeStringToColor(exploitHolder.getType()).typeColor));
                 counter++;
