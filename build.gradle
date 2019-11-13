@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'com.sun.xml.bind:jaxb-impl:2.3.2'
+    compile 'com.sun.istack:istack-commons-runtime:3.0.9'
+
+    compile 'javax.xml.bind:jaxb-api:2.3.1'
+    compile 'org.jsoup:jsoup:1.12.1'
+    compile 'org.docx4j:docx4j:3.3.7'
+}
