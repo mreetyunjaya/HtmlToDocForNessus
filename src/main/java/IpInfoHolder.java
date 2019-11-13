@@ -5,6 +5,7 @@ import java.util.List;
 public class IpInfoHolder {
     private String ipAddress;
     private List<ExploitHolder> foundExploits;
+    private String ports;
 
     public String getIpAddress() {
         return ipAddress;
@@ -20,6 +21,19 @@ public class IpInfoHolder {
 
     public void setFoundExploits(List<ExploitHolder> foundExploits) {
         this.foundExploits = foundExploits;
+    }
+
+    public String getPorts() {
+        return ports;
+    }
+
+    public void setPorts(String ports) {
+        this.ports = ports;
+    }
+
+    public IpInfoHolder (String ipAddress, String ports) {
+        this.ipAddress=ipAddress;
+        this.ports=ports;
     }
 
     public IpInfoHolder (String ipAddress, List<ExploitHolder> holders) {

@@ -9,10 +9,13 @@ public class Main {
 
         new SiteParser("input.html");
 
+        new XmlParser("input.xml");
+
         try {
             DocMaker.produceDoc();
         } catch (Docx4JException e) {
             e.printStackTrace();
         }
+
     }
 }

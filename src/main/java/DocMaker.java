@@ -35,17 +35,37 @@ public class DocMaker {
         MainDocumentPart mainDocumentPart = wordPackage.getMainDocumentPart();
         mainDocumentPart.addStyledParagraphOfText("Title", "Nessus!");
         mainDocumentPart.addParagraphOfText("Klasyfikacja luk");
+        P emptyText = produceColoredText("", "black");
 
         for (IpInfoHolder ipInfoHolder : AppMemory.getInstance().getIpInfoList()) {
             P p = produceColoredText("Host: " + ipInfoHolder.getIpAddress(), "black");
             mainDocumentPart.getContent().add(p);
 
+            String openPorts = ipInfoHolder.getPorts();
+            if (openPorts == null || openPorts.trim().equals("")) {
+                p = produceColoredText("Nie wykryto otwartych portow", "black");
+                mainDocumentPart.getContent().add(p);
+            }
+            else {
+                p = produceColoredText("Otwarte porty: " + openPorts, "black");
+                mainDocumentPart.getContent().add(p);
+            }
+
             p = produceColoredText("Wykryte Luki: ", "black");
             mainDocumentPart.getContent().add(p);
 
+            if (ipInfoHolder.getFoundExploits() == null || ipInfoHolder.getFoundExploits().size() == 0) {
+                p = produceColoredText("Nie wykryto zadnych luk", "black");
+                mainDocumentPart.getContent().add(p);
+
+                mainDocumentPart.getContent().add(emptyText);
+                mainDocumentPart.getContent().add(emptyText);
+                continue;
+            }
+
             int writableWidthTwips = wordPackage.getDocumentModel()
                     .getSections().get(0).getPageDimensions().getWritableWidthTwips();
-            int columnNumber = 3;
+            int columnNumber = 2;
             Tbl tbl = TblFactory.createTable(ipInfoHolder.getFoundExploits().size(), 2, writableWidthTwips/columnNumber);
 
             boolean titleRowCreated = false;
@@ -68,6 +88,8 @@ public class DocMaker {
                 counter++;
             }
             mainDocumentPart.getContent().add(tbl);
+            mainDocumentPart.getContent().add(emptyText);
+            mainDocumentPart.getContent().add(emptyText);
         }
 
 
