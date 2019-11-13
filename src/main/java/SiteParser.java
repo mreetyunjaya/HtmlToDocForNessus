@@ -1,5 +1,6 @@
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
+import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -73,6 +74,7 @@ public class SiteParser {
                 if (tdTags.get(1).html().equals("Severity")) continue;
                 String tdType = tdTags.get(1).getElementsByTag("span").get(0).html();
                 String tdDescr = tdTags.get(6).html();
+                tdDescr = Parser.unescapeEntities(tdDescr, true);
                 if (tdType.equals("Info")) continue; //TODO: can be optional
                 exploitHolders.add(new ExploitHolder(tdType, tdDescr));
                 LOGGER.info("New holder: " + tdType + " -> " + tdDescr);
