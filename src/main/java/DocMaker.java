@@ -111,7 +111,7 @@ public class DocMaker {
         mainDocumentPart.getContent().add(produceColoredText("", "black"));
     }
 
-    public static void produceDoc() throws Docx4JException {
+    public static void produceDoc(String outputFile) throws Docx4JException {
         WordprocessingMLPackage wordPackage = WordprocessingMLPackage.createPackage();
         MainDocumentPart mainDocumentPart = wordPackage.getMainDocumentPart();
         mainDocumentPart.addStyledParagraphOfText("Title", "Nessus!");
@@ -182,7 +182,7 @@ public class DocMaker {
 
 
 
-        File exportFile = new File("output.docx");
+        File exportFile = new File(outputFile);
         wordPackage.save(exportFile);
     }
 }
